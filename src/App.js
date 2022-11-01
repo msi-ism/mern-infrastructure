@@ -24,7 +24,7 @@ function App() {
         </>
       ) : (
         <>
-        <NavBar />  
+        <NavBar setUser={setUser}/>  
         <AuthPage setUser={setUser} />
       </>
       )}

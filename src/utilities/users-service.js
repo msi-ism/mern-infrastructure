@@ -28,3 +28,7 @@ export async function signUp(userData) {
     const token = getToken()
     return token ? JSON.parse(atob(token.split('.')[1])).user : null;
   }
+
+  export function logOut() {
+    localStorage.removeItem('token')
+  }
