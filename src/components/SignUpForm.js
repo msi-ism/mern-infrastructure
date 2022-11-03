@@ -30,6 +30,7 @@ export default class SignUpForm extends Component {
             }
             // ^ pass the formData to the SignUp function
             const user = await signUp(formData)
+            // ^ using Signup from users-service on formData collected here
             const setUser = this.props.setUser
             setUser(user)
         } catch {
@@ -42,6 +43,7 @@ export default class SignUpForm extends Component {
         const disable = this.state.password !== this.state.confirm;
         return (
           <div>
+            <h1>Sign-Up!</h1>
             <div className="form-container">
               <form className='form' autoComplete="off" onSubmit={this.handleSubmit}>
                 <label>Name</label>

@@ -19,6 +19,9 @@ code {
   --tan-2: #E7E2DD;
   --tan-3: #E2D9D1;
   --tan-4: #D3C1AE;
+  --purple-1: #9F73AB;
+  --blue-1: #A3C7D6;
+  --green-1: #ADCF9F;
   --orange: #F67F00;
   --text-light: #968c84;
   --text-dark: #615954;
@@ -35,7 +38,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
+  background-color: var(--green-1);
   padding: 2vmin;
   height: 100vh;
 }
@@ -47,6 +50,16 @@ code {
 
 #root {
   height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-top: 15%;
 }
 
 .align-ctr {
@@ -97,6 +110,8 @@ code {
   background-color: var(--tan-1);
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;
+  width: 50vw;
+
 }
 
 p.error-message {
@@ -158,10 +173,14 @@ button.btn-xs {
 
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
-  background-color: var(--tan-4);
+  background-color: var(--purple-1);
 }
 
 button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
+}
+
+.login {
+
 }

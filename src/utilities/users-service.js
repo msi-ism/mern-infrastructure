@@ -5,6 +5,15 @@ export async function signUp(userData) {
     // ^ which will ultimately return a JSON Web Token (JWT)
     const token = await usersAPI.signUp(userData);
     localStorage.setItem('token', token)
+    // ^ Note: We have not used a try/catch block because any error will propagate up to the "consumer" of the service - in this case the consumer is the handleSubmitmethod in the <SignUpForm>component.
+    return getUser()
+  }
+
+  export async function login(userData) {
+    console.log(userData)
+    const token = await usersAPI.login(userData)
+    localStorage.setItem('token', token)
+    console.log(token)
     return getUser()
   }
 
@@ -28,6 +37,9 @@ export async function signUp(userData) {
     const token = getToken()
     return token ? JSON.parse(atob(token.split('.')[1])).user : null;
   }
+
+
+
 
   export function logOut() {
     localStorage.removeItem('token')

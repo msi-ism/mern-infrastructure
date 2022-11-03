@@ -1,9 +1,12 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
+const { trusted } = require('mongoose');
 
 
 module.exports = {
-  create
+  create,
+  login
 };
 
 
@@ -25,6 +28,25 @@ async function create(req, res) {
 // ^ Helper Function
 function createJWT(user) {
   return jwt.sign({user}, process.env.SECRET, {expiresIn: '24h'})
+}
+
+// ^ Check user function
+
+async function login(req, res) {
+  try {
+    // ^ 
+    const user = await User.findOne({email: req.body.email})
+    console.log(user)
+    if (!user) throw new Error('Nope')
+    const decodedPassword = await bcrypt.compare(req.body.password, user.password)
+    if (!decodedPassword) throw new Error('Nope') 
+    const token = createJWT(user)
+    res.json(token)
+
+  } catch (error) {
+    res.status(400).json('Bad Credentials')
+    
+  }
 }
 
 
