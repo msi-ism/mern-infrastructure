@@ -10,13 +10,17 @@ const PORT = process.env.PORT || 3001
 
 
 
-// ^ Starts Middleware
+// * Starts Middleware
+// ^ Middleware to verify token and assign user object of payload to req.user.
+// ^ Be sure to mount before routes
+app.use(require('./config/checkToken'))
 app.use(logger('dev'))
 app.use(express.json())
-// Configure both serve-favicon & static middleware
-// to serve from the production 'build' folder
+// ^ Configure both serve-favicon & static middleware
+// ^ to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
+
 
 // ^ API Routes - reads top to bottom
 

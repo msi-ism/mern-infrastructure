@@ -13,7 +13,7 @@ export async function signUp(userData) {
     console.log(userData)
     const token = await usersAPI.login(userData)
     localStorage.setItem('token', token)
-    console.log(token)
+    // console.log(token)
     return getUser()
   }
 
@@ -23,7 +23,6 @@ export async function signUp(userData) {
     if (!token) return null
     // ^ we DO have token, get the payload
     const payload = JSON.parse(atob(token.split('.')[1]))
-    console.log(payload)
 
     if (payload.exp < Date.now() / 1000){
       localStorage.removeItem('token')
@@ -38,6 +37,12 @@ export async function signUp(userData) {
     return token ? JSON.parse(atob(token.split('.')[1])).user : null;
   }
 
+  
+  export function checkToken() {
+    return usersAPI.checkToken().then(dateStr => new Date(dateStr))
+
+
+  }
 
 
 
